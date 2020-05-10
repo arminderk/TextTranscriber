@@ -7,9 +7,11 @@ file = sr.AudioFile('audios/male.wav')
 with file as source:
     audio = r.record(source)
 
-translator = Translator()
-translated = translator.translate(r.recognize_google(audio), dest='pa')
+lang = input("Enter language to translate to: ")
 
-text_file = open("output.txt", "w")
+translator = Translator()
+translated = translator.translate(r.recognize_google(audio), dest=lang)
+
+text_file = open("output.txt", "wb")
 text_file.write(translated.text.encode('utf-8'))
 text_file.close()
